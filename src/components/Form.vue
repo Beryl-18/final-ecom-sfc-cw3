@@ -11,7 +11,7 @@
                     <div class="checkout-inner">
                         <!-- Lesson Details displayed -->
                             <strong><span v-text="item.Subject" class="checkout-info"></span></strong>
-                            <span class="checkout-info">Price Per Lesson: <strong><span v-text = "item.price"></span></strong></span>
+                            <span class="checkout-info">Price Per Lesson: <strong><span v-text="item.price"></span></strong></span>
                             <span class="checkout-info" > Spaces Chosen: <strong><span v-text="item.quantity"></span></strong></span>
                     
                         <!-- Removal Button -->
@@ -28,7 +28,7 @@
 
 
                     <!-- enable checkout if both full name and phone number are entered without errors, else disable-->
-                    <button class="checkout-btn" v-if="enableCheckout" v-on:click="checkoutConfirm"> Checkout </button> 
+                    <button class="checkout-btn" v-if="enableCheckout" @click="checkoutConfirm"> Checkout </button> 
                     <button class="checkout-btn" v-else disabled> Checkout </button>
 
                     <!-- display errors for user information -->
