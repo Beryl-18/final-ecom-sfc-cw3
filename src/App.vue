@@ -145,32 +145,32 @@ export default {
         }
     },
     methods:{
-    showCheckout() {
-        this.checkoutLogic ? this.checkoutLogic = false : this.checkoutLogic = true;
-    },
-    //Function to push items to cart
-    addtoCart(course){
-        console.log("accessing root comp")
-        let lessonIncart = this.cart.find(i => i.id == course.id);
-        if (lessonIncart){
-            lessonIncart.quantity++;
-            course.spaces = course.spaces - 1;
+        showCheckout() {
+            this.checkoutLogic ? this.checkoutLogic = false : this.checkoutLogic = true;
+        },
+        //Function to push items to cart
+        addtoCart(course){
+            console.log("accessing root comp")
+            let lessonIncart = this.cart.find(i => i.id == course.id);
+            if (lessonIncart){
+                lessonIncart.quantity++;
+                course.spaces = course.spaces - 1;
+                }
+            else {
+                this.cart.push(course);
+                course.quantity++;
+                course.spaces = course.spaces - 1;
             }
-        else {
-            this.cart.push(course);
-            course.quantity++;
-            course.spaces = course.spaces - 1;
-        }
-    },
-    remove(course){
-        //if there's 1 quantity, then remove quantity from cart
-         if (course.quantity == 1 ){
-            this.cart.splice(this.cart.indexOf(course),1);
-            }
+        },
+        remove(course){
+            //if there's 1 quantity, then remove quantity from cart
+            if (course.quantity == 1 ){
+                this.cart.splice(this.cart.indexOf(course),1);
+                }
 
-        course.quantity = course.quantity - 1;
-        course.spaces = course.spaces + 1;
-    },
+            course.quantity = course.quantity - 1;
+            course.spaces = course.spaces + 1;
+        },
 
     },
 
@@ -184,7 +184,24 @@ export default {
                 }
             return itemcounter;
         }
-    }
+    },
+    // fetch methods to run at vue instance creation
+    created: function(){
+
+        //function to retrieve lessons information --> json  
+            fetch("https://lessonsapp-3145.herokuapp.com/collection/lessons").then(
+                function(response){
+                    response.json().then(
+                        function (json){
+                            this.lessons = json;
+                        }
+                    )
+                }
+                            
+            ).catch(err =>console.log(err));
+
+        },
+
     
 }
 </script>
