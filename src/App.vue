@@ -185,23 +185,5 @@ export default {
             return itemcounter;
         }
     },
-    // fetch methods to run at vue instance creation
-    created: function(){
-
-        //function to retrieve lessons information --> json  
-            fetch("https://lessonsapp-3145.herokuapp.com/collection/lessons").then(
-                function(response){
-                    response.json().then(
-                        function (json){
-                            this.lessons = json;
-                        }
-                    )
-                }
-                            
-            ).catch(err =>console.log(err));
-
-        },
-
-    
 }
 </script>
