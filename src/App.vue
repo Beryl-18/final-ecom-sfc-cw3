@@ -7,22 +7,22 @@
             <div id="navbar">
                 <!-- Shoppping Cart Button -->
                 <div>
-                    <button class="checkoutCart" v-if="cartAggregate > 0" @click="showCheckout()">
+                    <button class="checkoutCart"  @click="showCheckout()">
                         <!-- create logic to switch between checkout and lesson plan? -->
                         Checkout <span class="fas fa-cart-plus"></span> {{cartAggregate}}
                     </button>
-                    <button class="checkoutCart" v-else disabled>
+                    <button class="checkoutCart"  disabled>
                         <!-- create logic to switch between checkout and lesson plan? -->
                          Checkout <span class="fas fa-cart-plus"></span>
                     </button>
                 </div>
             </div>
 
-        <main>
-            <lesson-list v-if="checkoutLogic" @addLesson="addToCart" ></lesson-list>
+        
+            <lesson-list @addP="addtoCart" v-if="checkoutLogic"  ></lesson-list>
 
             <checkout v-else :cart="cart" ></checkout>
-        </main>
+
     </div>
 </div>
 </template>
@@ -44,23 +44,26 @@ export default {
         }
     },
     methods:{
-    //Function to push items to cart
-        addtoCart(course){
-            let lessonIncart = this.cart.find(i => i.id == course.id);
-            if (lessonIncart){
-                lessonIncart.quantity++;
-                course.spaces = course.spaces - 1;
-                }
-            else {
-                this.cart.push(course);
-                course.quantity++;
-                course.spaces = course.spaces - 1;
-            }
-       },
     showCheckout() {
         this.checkoutLogic ? this.checkoutLogic = false : this.checkoutLogic = true;
-        }
     },
+    //Function to push items to cart
+    addtoCart(course){
+        console.log("accessing root comp")
+        let lessonIncart = this.cart.find(i => i.id == course.id);
+        if (lessonIncart){
+            lessonIncart.quantity++;
+            // course.spaces = course.spaces - 1;
+            }
+        else {
+            this.cart.push(course);
+            // course.quantity++;
+            // course.spaces = course.spaces - 1;
+        }
+        
+    },
+    },
+
     computed:{
         cartAggregate(){
             let itemcounter = 0;

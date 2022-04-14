@@ -24,7 +24,7 @@
 
                         </div>
                         <!-- Cart Button -->
-                        <button class="addToCartButton" v-if="canAddTocart(lesson)" v-on:click="addtoCart(lesson)">
+                        <button class="addToCartButton" v-if="canAddTocart(lesson)" @click="addl(lesson)">
                             <span class="fas fa-cart-plus"></span> Add To Cart
                         </button>
                         <button class="addToCartButton" v-else disabled>
@@ -35,7 +35,6 @@
             </div>
         </div>
 </template>
-<script src="lessons.js"></script>
 <script>
 export default {
   name: "ProductList",
@@ -140,16 +139,14 @@ export default {
         "spaces": 5,
         "quantity":0,
         "showLesson": true
-    }
+    },
     ],
-      types:['Subject','Location','price'],
-      type:''
     };
   },
   methods: {
-    addtoCart(lesson) {
-      console.log("added lesson");
-      this.$emit('addLesson', lesson);
+    addl(lesson) {
+      console.log("lesson added", lesson.id);
+      this.$emit('addP',lesson);
     },
     //Validating whether course can be added to cart
     canAddTocart: function(course) {

@@ -23,8 +23,8 @@
 
                 <!-- Checkout Details of Customer -->
                 <div name="checkoutSection" id="checkout-customer-details">
-                    <span class="customer-details-inner-item">Full Name : <input type="text" v-if="cartAggregate <= 0" disabled> <input v-else type="text" v-model="checkoutDetails.fullName" id="checkoutName"></span>
-                    <span class="customer-details-inner-item">Phone Number : <input type="text" v-if="cartAggregate <= 0" disabled><input v-else type="text" v-model="checkoutDetails.phone" id="checkoutNumber"></span>
+                    <span class="customer-details-inner-item">Full Name : <input type="text" v-if="cartAggregate <= 0" disabled> <input v-else type="text" v-model="this.name" id="checkoutName"></span>
+                    <span class="customer-details-inner-item">Phone Number : <input type="text" v-if="cartAggregate <= 0" disabled><input v-else type="text" v-model="this.phone" id="checkoutNumber"></span>
 
 
                     <!-- enable checkout if both full name and phone number are entered without errors, else disable-->
