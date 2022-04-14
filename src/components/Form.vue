@@ -15,7 +15,7 @@
                             <span class="checkout-info" > Spaces Chosen: <strong><span v-text="item.quantity"></span></strong></span>
                     
                         <!-- Removal Button -->
-                        <button @click="cart.splice(inedex,1)" class="remove-btn">
+                        <button @click="removeOneSpace(item)" class="remove-btn">
                             Remove a Space
                         </button>
                     </div>
@@ -57,6 +57,10 @@ export default({
             alert("Order has been placed for " + this.name +". Thank you!");
             //reset cart and refresh the page
             this.cart.splice(0, this.cart.length);
+        },
+        removeOneSpace(course){
+            console.log("event trigger from comp");
+            this.$emit('removeSpace', course);
         }
     },
     computed: {
@@ -101,7 +105,6 @@ export default({
             },
 
         enableCheckout(){
-
             //if all errors are resolved => allow checkout
                 let name = this.name;
                 let Npattern = /^[a-zA-Z ]*$/;
